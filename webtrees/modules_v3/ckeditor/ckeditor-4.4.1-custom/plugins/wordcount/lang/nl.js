@@ -1,1 +1,0 @@
-CKEDITOR.plugins.setLang("wordcount","nl",{WordCount:"Woorden:",CharCount:"Tekens:",CharCountWithHTML:"Tekens (inclusief HTML):",limit:"Maximaal:",title:"Statistieken"});
