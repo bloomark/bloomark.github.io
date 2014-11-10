@@ -1,0 +1,1 @@
+CKEDITOR.plugins.setLang("wordcount","sv",{WordCount:"Ord:",CharCount:"Tecken:",CharCountWithHTML:"Tecken (inklusive HTML):",limit:"Begr\u00e4nsning:",title:"Statistik"});

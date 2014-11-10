@@ -1,0 +1,1 @@
+CKEDITOR.plugins.setLang("wordcount","jp",{WordCount:"\u5358\u8a9e\u6570:",CharCount:"\u6587\u5b57\u6570:",limit:"\u4e0a\u9650:",title:"\u30ef\u30fc\u30c9\u30ab\u30a6\u30f3\u30c8"});

@@ -1,0 +1,37 @@
+{
+	"autoload": {
+		"psr-0": {
+			"WT_": "library/WT/"
+		},
+		"psr-4": {
+			"WT\\": "library/WT/"
+		}
+	},
+	"config": {
+		"preferred-install": "dist",
+		"vendor-dir": "library"
+	},
+	"description": "webtrees online genealogy",
+	"keywords": ["webtrees", "genealogy"],
+	"license": "GPL-2.0+",
+	"minimum-stability": "stable",
+	"name": "fisharebest/webtrees",
+	"require": {
+		"bombayworks/zendframework1": "*",
+		"ezyang/htmlpurifier": "*",
+		"fisharebest/ext-calendar": "*",
+		"ircmaxell/password-compat": "*",
+		"michelf/php-markdown": "*",
+		"patchwork/utf8": "*",
+		"tecnick.com/tcpdf": "*",
+		"rhumsaa/uuid": "*"
+	},
+	"scripts": {
+		"post-install-cmd": [
+			"composer dump-autoload --optimize"
+		],
+		"post-update-cmd": [
+			"composer dump-autoload --optimize"
+		]
+	}
+}
