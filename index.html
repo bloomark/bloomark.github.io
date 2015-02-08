@@ -49,6 +49,10 @@
             map: map
           });
 
+          var infowindow = new google.maps.InfoWindow({
+            content: locations[i][0]
+          });
+          
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
               infowindow.setContent(locations[i][0]);
