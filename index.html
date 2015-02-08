@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>Simple markers</title>
+    <title>Restaurant Search</title>
     <style>
       html, body, #map-canvas {
         height: 100%;
@@ -11,25 +11,53 @@
         padding: 0px
       }
     </style>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>-->
+      <script src="http://maps.google.com/maps/api/js?sensor=false" 
+          type="text/javascript"></script>
+
     <script>
-function initialize() {
-  var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
-  var mapOptions = {
-    zoom: 4,
-    center: myLatlng
-  }
-  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+      function getURLParameter(name) {
+        return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+      }
 
-  var marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map,
-      title: 'Hello World!'
-  });
-}
+      function initialize() {
+        var mapOptions = {
+          zoom: 10,
+          center: new google.maps.LatLng(getURLParameter('lat'), getURLParameter('lng')),
+        }
 
-google.maps.event.addDomListener(window, 'load', initialize);
+        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        
+        var foo = getURLParameter('locations');
+        foo = foo.split(",");
+        foo[1] = parseFloat(foo[1]);
+        foo[2] = parseFloat(foo[2]);
 
+        var locations = [];
+
+        for(i=0; i<foo.length; i=i+3)
+        {
+          foo[i+1] = parseFloat(foo[i+1]);
+          foo[i+2] = parseFloat(foo[i+2]);
+          bar = [foo[i], foo[i+1], foo[i+2]];
+          locations.push(bar);
+        }
+
+        for (i = 0; i < locations.length; i++){  
+          marker = new google.maps.Marker({
+            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            map: map
+          });
+
+          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+              infowindow.setContent(locations[i][0]);
+              infowindow.open(map, marker);
+            }
+          })(marker, i));
+        }
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
     </script>
   </head>
   <body>
