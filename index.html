@@ -45,9 +45,10 @@
 
         for (i = 0; i < locations.length; i++){  
           marker = new google.maps.Marker({
-            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-            map: map
-          });
+          position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+          map: map
+          animation: google.maps.Animation.DROP
+        });
 
           var infowindow = new google.maps.InfoWindow({
             content: locations[i][0]
