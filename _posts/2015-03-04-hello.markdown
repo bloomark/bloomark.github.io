@@ -1,0 +1,18 @@
+---
+layout: post
+title: Hello
+category: posts
+---
+
+Hello World! Customary first words aside, I'm going to start blogging here, seems like a much more fun project that blogging on Wordpress, of course I'll have to figure out how to serve dynamic content here (not possible). Hopefully going to keep this active.
+
+---
+
+I've shamelessly used Left, so here's a plug, a clean whitespace-happy layout for [Jekyll][jekyll] designed by [zachholman.com][zh]. You'll want to [get the code][left] and read the README to learn how to install and set up Left for your own purposes.
+
+---
+
+[jekyll]: https://github.com/mojombo/jekyll
+[zh]: http://zachholman.com
+[left]: https://github.com/holman/left#readme
+[twitter]: https://twitter.com/holman
