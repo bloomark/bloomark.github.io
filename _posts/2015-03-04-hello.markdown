@@ -4,7 +4,7 @@ title: Hello
 category: posts
 ---
 
-Hello World! Customary first words aside, I'm going to start blogging here, seems like a much more fun project that blogging on Wordpress, of course I'll have to figure out how to serve dynamic content here (not possible). Hopefully going to keep this active.
+Hello World! Customary first words aside, I'm going to start blogging here ([this](http://syqe.wordpress.com/) is my old blog - four posts doesn't make a blog, does it), seems like a much more fun project that blogging on Wordpress, of course I'll have to figure out how to serve dynamic content here (not possible). Hopefully going to keep this active.
 
 ---
 
