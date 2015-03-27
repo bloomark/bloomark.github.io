@@ -6,7 +6,7 @@ category: posts
 
 I've started work on building a cryptocurrency exchange with my friend [Akhil](http://akhilum.com), we're using [HyperDex][HD] and Python-Flask to power the project but more on that in a later post. This post is about using Flask-Login, Flask-OpenID and HyperDex. We couldn't find any guides to use OpenID (almost all examples used SQLite) the way we wanted it and I figured a little example could help someone else using this combination of technologies. Akhil was the one that implemented this, but I'm going to steal it all. >:)
 
-This is the HyperDex space that you'll be creating
+This is the HyperDex space that you'll need to create. It stores the user's email address, nickname, and phone number. Of course you'll need the relevant WTForms and HTML pages to serve this.
 {% highlight python %}
 a.add_space('''
     space users
