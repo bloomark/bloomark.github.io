@@ -1,13 +1,13 @@
 ---
 layout: post
-title: Flask, OpenID, Login, and HyperDex
+title: HyperDex with Flask-OpenID and Login
 category: posts
 ---
 
 I've started work on building a cryptocurrency exchange with my friend [Akhil](http://akhilum.com), we're using [HyperDex][HD] and Python-Flask to power the project but more on that in a later post. This post is about using Flask-Login, Flask-OpenID and HyperDex. We couldn't find any guides to use OpenID (almost all examples used SQLite) the way we wanted it and I figured a little example could help someone else using this combination of technologies. Akhil was the one that implemented this, but I'm going to steal it all. >:)
 
 This is the HyperDex space that you'll be creating
-```python
+{% highlight python %}
 a.add_space('''
     space users
         key string email
@@ -17,10 +17,10 @@ a.add_space('''
         subspace name
         subspace phone
 ''')
-```
+{% endhighlight %}
 
 If your website is going to have users, it needs some way for them to sign up! I've removed the code I used to fetch requested data from the WTForm that is displayed on the HTML Page.
-```python
+{% highlight python %}
 oid = OpenID(app, os.path.join(basedir, 'tmp'))
 @app.route('/signup', methods=['GET', 'POST'])
 @oid.loginhandler
@@ -45,10 +45,10 @@ def signup():
                            title='f13x : Sign Up',
                            form=signup_form,
                            providers=app.config['OPENID_PROVIDERS'])
-```
+{% endhighlight %}
 
 This is the login function, again, I've removed the code I used to fetch requested data from the WTForm.
-```python
+{% highlight python %}
 @app.route('/login', methods=['POST', 'GET'])
 @oid.loginhandler
 def login():
@@ -71,10 +71,10 @@ def login():
                             title='f13x : Log In', 
                             providers=app.config['OPENID_PROVIDERS'])
 
-```
+{% endhighlight %}
 
 You've probably noticed that we're storing the user's email address in the session variable. Flask stores encrypted session data in a cookie. Here's how to fetch that piece of information before each request.
-```python
+{% highlight python %}
 @app.before_request
 def lookup_current_user():
     g.user_email = None
@@ -82,10 +82,10 @@ def lookup_current_user():
         openid = str(session['openid'])
         if c.count('users', { 'email' : openid}) == 1:
             g.user_email = openid
-```
+{% endhighlight %}
 
 The all important logout function
-```python
+{% highlight python %}
 @app.route('/logout')
 @login_required
 def logout():
@@ -93,10 +93,10 @@ def logout():
     session.pop('openid', None)
     #flash(u'You were signed out')
     return redirect(oid.get_next_url())
-```
+{% endhighlight %}
 
 You're definitely wondering by now where HyperDex fits in, well you need to store the user's emailId somewhere!
-```python
+{% highlight python %}
 @oid.after_login
 def create_or_login(resp):
     # Check if the login was successful & emailId was provided by the OpenID provider
@@ -122,10 +122,10 @@ def create_or_login(resp):
     session['openid'] = str(resp.email)
     # Redirect the user to the page he was trying to fetch
     return redirect(request.args.get('next') or url_for('index'))
-```
+{% endhighlight %}
 
 Let's say a user wants to update his phone number.
-```python
+{% highlight python %}
 @app.route('/update_phone', methods=['GET', 'POST'])
 @login_required
 def add_funds():
@@ -136,7 +136,7 @@ def add_funds():
         
         # Redirect the user to the main page
         return redirect(url_for('index'))
-```
+{% endhighlight %}
 
 The code might feel a bit out of place, I'll replace it with simpler code snippets if a lot of people don't understand it.
 
