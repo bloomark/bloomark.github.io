@@ -17,7 +17,7 @@ a.add_space('''
         subspace name
         subspace phone
 ''')
-{% endhighlight %}
+{% endhighlight %}<br/>
 
 If your website is going to have users, it needs some way for them to sign up! I've removed the code I used to fetch requested data from the WTForm that is displayed on the HTML Page.
 {% highlight python %}
@@ -45,7 +45,7 @@ def signup():
                            title='f13x : Sign Up',
                            form=signup_form,
                            providers=app.config['OPENID_PROVIDERS'])
-{% endhighlight %}
+{% endhighlight %}<br/>
 
 This is the login function, again, I've removed the code I used to fetch requested data from the WTForm.
 {% highlight python %}
@@ -71,7 +71,7 @@ def login():
                             title='f13x : Log In', 
                             providers=app.config['OPENID_PROVIDERS'])
 
-{% endhighlight %}
+{% endhighlight %}<br/>
 
 You've probably noticed that we're storing the user's email address in the session variable. Flask stores encrypted session data in a cookie. Here's how to fetch that piece of information before each request.
 {% highlight python %}
@@ -82,7 +82,7 @@ def lookup_current_user():
         openid = str(session['openid'])
         if c.count('users', { 'email' : openid}) == 1:
             g.user_email = openid
-{% endhighlight %}
+{% endhighlight %}<br/>
 
 The all important logout function
 {% highlight python %}
@@ -93,7 +93,7 @@ def logout():
     session.pop('openid', None)
     #flash(u'You were signed out')
     return redirect(oid.get_next_url())
-{% endhighlight %}
+{% endhighlight %}<br/>
 
 You're definitely wondering by now where HyperDex fits in, well you need to store the user's emailId somewhere!
 {% highlight python %}
@@ -122,7 +122,7 @@ def create_or_login(resp):
     session['openid'] = str(resp.email)
     # Redirect the user to the page he was trying to fetch
     return redirect(request.args.get('next') or url_for('index'))
-{% endhighlight %}
+{% endhighlight %}<br/>
 
 Let's say a user wants to update his phone number.
 {% highlight python %}
@@ -136,7 +136,7 @@ def add_funds():
         
         # Redirect the user to the main page
         return redirect(url_for('index'))
-{% endhighlight %}
+{% endhighlight %}<br/>
 
 The code might feel a bit out of place, I'll replace it with simpler code snippets if a lot of people don't understand it.
 
